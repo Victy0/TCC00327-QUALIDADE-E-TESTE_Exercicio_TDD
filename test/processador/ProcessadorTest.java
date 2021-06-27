@@ -85,5 +85,21 @@ public class ProcessadorTest {
 		 
 	}
 	
+	@DisplayName("Testa se pagamento de valor baixo está vinculado a fatura e fatura não está paga")
+	@Test
+	public void testPagamentoAssociadoFaturaBoletoInferior() {
+		
+		Fatura fatura = new Fatura("Cliente", 50.0, new Date());
+		
+		Boleto boleto = new Boleto("XXXXXXXXXX", 40.0, new Date());
+		
+		processador.processa(boleto, fatura);
+		
+		Assertions.assertEquals(1, fatura.getPagamentos().size());
+		
+		Assertions.assertEquals(false, fatura.getPaga());
+		 
+	}
+	
 
 }
