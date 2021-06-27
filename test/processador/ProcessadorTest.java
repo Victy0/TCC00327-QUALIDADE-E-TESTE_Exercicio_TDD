@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import boleto.Boleto;
 import fatura.Fatura;
+import pagamento.Pagamento;
 
 public class ProcessadorTest {
 	
@@ -153,5 +154,82 @@ public class ProcessadorTest {
 		 
 	}
 	
+	// EXEMPLOS DADOS PELA PROFESSORA
+	
+	@DisplayName("Fatura de 1.500,00 com 3 boletos no valor de 500,00, 400,00 e 600,00: fatura marcada como PAGA, e três pagamentos do tipo BOLETO criados")
+	@Test
+	public void test1() {
+		
+		Fatura fatura = new Fatura("Cliente", 1500.0, new Date());
+		
+		Boleto boleto1 = new Boleto("XXXXXXXXXX", 500.0, new Date());
+		Boleto boleto2 = new Boleto("YYYYYYYYYY", 400.0, new Date());
+		Boleto boleto3 = new Boleto("ZZZZZZZZZZ", 600.0, new Date());
+		
+		List<Boleto> boletos = new ArrayList<Boleto>();
+		boletos.add(boleto1);
+		boletos.add(boleto2);
+		boletos.add(boleto3);
+		
+		processador.processa(boletos, fatura);
+		
+		Assertions.assertEquals(true, fatura.getPaga());
+		Assertions.assertEquals(3, fatura.getPagamentos().size());
+		for(Pagamento pagamento : fatura.getPagamentos()) 
+		{
+			Assertions.assertEquals("BOLETO", pagamento.getTipoPagamento());
+		}
+		 
+	}
+	
+	@DisplayName("Fatura de 1.500,00 com 3 boletos no valor de 1000,00, 500,00 e 250,00: fatura marcada como PAGA, e três pagamento do tipo BOLETO criados")
+	@Test
+	public void test2() {
+		
+		Fatura fatura = new Fatura("Cliente", 1500.0, new Date());
+		
+		Boleto boleto1 = new Boleto("XXXXXXXXXX", 1000.0, new Date());
+		Boleto boleto2 = new Boleto("YYYYYYYYYY", 500.0, new Date());
+		Boleto boleto3 = new Boleto("ZZZZZZZZZZ", 250.0, new Date());
+		
+		List<Boleto> boletos = new ArrayList<Boleto>();
+		boletos.add(boleto1);
+		boletos.add(boleto2);
+		boletos.add(boleto3);
+		
+		processador.processa(boletos, fatura);
+		
+		Assertions.assertEquals(true, fatura.getPaga());
+		Assertions.assertEquals(3, fatura.getPagamentos().size());
+		for(Pagamento pagamento : fatura.getPagamentos()) 
+		{
+			Assertions.assertEquals("BOLETO", pagamento.getTipoPagamento());
+		}
+		 
+	}
+	
+	@DisplayName("Fatura de 2.000,00 com 2 boletos no valor de 500,00 e 400,00: fatura não marcada como PAGA, e dois pagamentos do tipo BOLETO criados")
+	@Test
+	public void test3() {
+		
+		Fatura fatura = new Fatura("Cliente", 2000.0, new Date());
+		
+		Boleto boleto1 = new Boleto("XXXXXXXXXX", 500.0, new Date());
+		Boleto boleto2 = new Boleto("YYYYYYYYYY", 400.0, new Date());
+		
+		List<Boleto> boletos = new ArrayList<Boleto>();
+		boletos.add(boleto1);
+		boletos.add(boleto2);
+		
+		processador.processa(boletos, fatura);
+		
+		Assertions.assertEquals(false, fatura.getPaga());
+		Assertions.assertEquals(2, fatura.getPagamentos().size());
+		for(Pagamento pagamento : fatura.getPagamentos()) 
+		{
+			Assertions.assertEquals("BOLETO", pagamento.getTipoPagamento());
+		}
+		 
+	}
 
 }
