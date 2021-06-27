@@ -132,5 +132,26 @@ public class ProcessadorTest {
 		 
 	}
 	
+	@DisplayName("Testa se 3 boletos com valores baixos equivalente ao valor da fatura gera fatura paga")
+	@Test
+	public void testFaturapagaMultiplosBoletosValorBaixo() {
+		
+		Fatura fatura = new Fatura("Cliente", 50.0, new Date());
+		
+		Boleto boleto1 = new Boleto("XXXXXXXXXX", 40.0, new Date());
+		Boleto boleto2 = new Boleto("YYYYYYYYYY", 40.0, new Date());
+		Boleto boleto3 = new Boleto("ZZZZZZZZZZ", 20.0, new Date());
+		
+		List<Boleto> boletos = new ArrayList<Boleto>();
+		boletos.add(boleto1);
+		boletos.add(boleto2);
+		boletos.add(boleto3);
+		
+		processador.processa(boletos, fatura);
+		
+		Assertions.assertEquals(true, fatura.getPaga());
+		 
+	}
+	
 
 }
