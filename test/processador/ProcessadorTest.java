@@ -69,7 +69,7 @@ public class ProcessadorTest {
 		 
 	}
 	
-	@DisplayName("Testa se pagamento está vinculado a fatura")
+	@DisplayName("Testa se pagamento está vinculado a fatura e fatura está paga")
 	@Test
 	public void testPagamentoAssociadoFatura() {
 		
@@ -80,6 +80,8 @@ public class ProcessadorTest {
 		processador.processa(boleto, fatura);
 		
 		Assertions.assertEquals(1, fatura.getPagamentos().size());
+		
+		Assertions.assertEquals(true, fatura.getPaga());
 		 
 	}
 	
