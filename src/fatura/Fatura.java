@@ -14,12 +14,15 @@ public class Fatura {
 	
 	private String nomeCliente;
 	
+	private Boolean paga;
+	
 	private List<Pagamento> pagamentos = new ArrayList<Pagamento>();
 	
 	public Fatura(String nome, Double valor, Date data) {
 		this.nomeCliente = nome;
 		this.valorTotal = valor;
 		this.data = data;
+		this.paga = false;
 	}
 
 	public Date getData() {
@@ -40,6 +43,14 @@ public class Fatura {
 	
 	public List<Pagamento> getPagamentos(){
 		return this.pagamentos;
+	}
+
+	public Boolean getPaga() {
+		return paga;
+	}
+
+	public void setPaga(Boolean paga) {
+		this.paga = paga;
 	}
 
 }

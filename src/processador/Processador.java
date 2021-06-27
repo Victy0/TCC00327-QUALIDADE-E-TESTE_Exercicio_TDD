@@ -14,6 +14,7 @@ public class Processador {
 			{
 				Pagamento pagamento = new Pagamento(boleto.getValor(), "BOLETO");
 				fatura.addPagamento(pagamento);
+				fatura.setPaga(true);
 			}
 		}
 		
