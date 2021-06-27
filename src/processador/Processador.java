@@ -12,7 +12,7 @@ public class Processador {
 		{
 			if(boleto.getValor().equals(fatura.getValorTotal())) 
 			{
-				return new Pagamento(fatura.getValorTotal());
+				return new Pagamento(fatura.getValorTotal(), "BOLETO");
 			}
 		}
 		
