@@ -18,7 +18,7 @@ public class ProcessadorTest {
 		Assertions.assertNotNull(processador);
 	}
 	
-	@DisplayName("Testa se recebeu boleto e fatura e gerou pagamento")
+	@DisplayName("Testa se recebeu boleto e fatura e gerou pagamento validando valores")
 	@Test
 	public void testGeraPagamento() {
 		processador = new Processador();
@@ -32,6 +32,10 @@ public class ProcessadorTest {
 		
 		Pagamento pagamento = processador.processa(boleto, fatura);
 		Assertions.assertNotNull(pagamento);
+		
+		Assertions.assertEquals(50.0, boleto.getValor());
+		Assertions.assertEquals(50.0, fatura.getValorTotal());
+		Assertions.assertEquals(50.0, pagamento.getValorPago());
 		 
 	}
 	
