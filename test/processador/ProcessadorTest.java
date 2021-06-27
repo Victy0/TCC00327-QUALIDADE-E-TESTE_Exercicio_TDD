@@ -1,6 +1,8 @@
 package processador;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
@@ -98,6 +100,27 @@ public class ProcessadorTest {
 		Assertions.assertEquals(1, fatura.getPagamentos().size());
 		
 		Assertions.assertEquals(false, fatura.getPaga());
+		 
+	}
+	
+	@DisplayName("Testa se processa multiplos boletos e fatura está paga")
+	@Test
+	public void testMultiplosBoletos() {
+		
+		Fatura fatura = new Fatura("Cliente", 50.0, new Date());
+		
+		Boleto boleto1 = new Boleto("XXXXXXXXXX", 40.0, new Date());
+		Boleto boleto2 = new Boleto("YYYYYYYYYY", 40.0, new Date());
+		
+		List<Boleto> boletos = new ArrayList<Boleto>();
+		boletos.add(boleto1);
+		boletos.add(boleto2);
+		
+		processador.processa(boletos, fatura);
+		
+		Assertions.assertEquals(2, fatura.getPagamentos().size());
+		
+		Assertions.assertEquals(true, fatura.getPaga());
 		 
 	}
 	
