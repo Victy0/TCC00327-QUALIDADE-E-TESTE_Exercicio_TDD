@@ -1,21 +1,27 @@
 package processador;
 
+import java.util.List;
+
 import boleto.Boleto;
 import fatura.Fatura;
 import pagamento.Pagamento;
 
 public class Processador {
 	
-	public void processa(Boleto boleto, Fatura fatura) {
+	public void processa(List<Boleto> boletos, Fatura fatura) {
 		
-		if(boleto != null && fatura != null) 
+		for(Boleto boleto : boletos)
 		{
-			Pagamento pagamento = new Pagamento(boleto.getValor(), "BOLETO");
-			fatura.addPagamento(pagamento);
-			
-			if(boleto.getValor() >= fatura.getValorTotal()) 
+		
+			if(boleto != null && fatura != null) 
 			{
-				fatura.setPaga(true);
+				Pagamento pagamento = new Pagamento(boleto.getValor(), "BOLETO");
+				fatura.addPagamento(pagamento);
+				
+				if(boleto.getValor() >= fatura.getValorTotal()) 
+				{
+					fatura.setPaga(true);
+				}
 			}
 		}
 		

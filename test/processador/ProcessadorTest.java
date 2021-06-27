@@ -5,14 +5,12 @@ import java.util.Date;
 import java.util.List;
 
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import boleto.Boleto;
 import fatura.Fatura;
-import pagamento.Pagamento;
 
 public class ProcessadorTest {
 	
@@ -30,8 +28,10 @@ public class ProcessadorTest {
 		Fatura fatura = new Fatura("Cliente", 50.0, new Date());
 		
 		Boleto boleto = new Boleto("XXXXXXXXXX", 50.0, new Date());
+		List<Boleto> boletos = new ArrayList<Boleto>();
+		boletos.add(boleto);
 		
-		processador.processa(boleto, fatura);
+		processador.processa(boletos, fatura);
 		
 		Assertions.assertEquals(1, fatura.getPagamentos().size());
 		
@@ -48,8 +48,10 @@ public class ProcessadorTest {
 		Fatura fatura = new Fatura("Cliente", 50.0, new Date());
 		
 		Boleto boleto = new Boleto("XXXXXXXXXX", 50.0, new Date());
+		List<Boleto> boletos = new ArrayList<Boleto>();
+		boletos.add(boleto);
 		
-		processador.processa(boleto, fatura);
+		processador.processa(boletos, fatura);
 		
 		Assertions.assertEquals(1, fatura.getPagamentos().size());
 		
@@ -64,8 +66,10 @@ public class ProcessadorTest {
 		Fatura fatura = new Fatura("Cliente", 50.0, new Date());
 		
 		Boleto boleto = new Boleto("XXXXXXXXXX", 80.0, new Date());
+		List<Boleto> boletos = new ArrayList<Boleto>();
+		boletos.add(boleto);
 		
-		processador.processa(boleto, fatura);
+		processador.processa(boletos, fatura);
 		
 		Assertions.assertEquals(1, fatura.getPagamentos().size());
 		 
@@ -78,8 +82,10 @@ public class ProcessadorTest {
 		Fatura fatura = new Fatura("Cliente", 50.0, new Date());
 		
 		Boleto boleto = new Boleto("XXXXXXXXXX", 50.0, new Date());
+		List<Boleto> boletos = new ArrayList<Boleto>();
+		boletos.add(boleto);
 		
-		processador.processa(boleto, fatura);
+		processador.processa(boletos, fatura);
 		
 		Assertions.assertEquals(1, fatura.getPagamentos().size());
 		
@@ -94,8 +100,10 @@ public class ProcessadorTest {
 		Fatura fatura = new Fatura("Cliente", 50.0, new Date());
 		
 		Boleto boleto = new Boleto("XXXXXXXXXX", 40.0, new Date());
+		List<Boleto> boletos = new ArrayList<Boleto>();
+		boletos.add(boleto);
 		
-		processador.processa(boleto, fatura);
+		processador.processa(boletos, fatura);
 		
 		Assertions.assertEquals(1, fatura.getPagamentos().size());
 		
@@ -110,7 +118,7 @@ public class ProcessadorTest {
 		Fatura fatura = new Fatura("Cliente", 50.0, new Date());
 		
 		Boleto boleto1 = new Boleto("XXXXXXXXXX", 40.0, new Date());
-		Boleto boleto2 = new Boleto("YYYYYYYYYY", 40.0, new Date());
+		Boleto boleto2 = new Boleto("YYYYYYYYYY", 50.0, new Date());
 		
 		List<Boleto> boletos = new ArrayList<Boleto>();
 		boletos.add(boleto1);
