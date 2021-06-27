@@ -50,6 +50,21 @@ public class ProcessadorTest {
 		Assertions.assertNotNull(pagamento);
 		
 		Assertions.assertEquals("BOLETO", pagamento.getTipoPagamento());
+		
+	}
+	
+	@DisplayName("Testa se valor do boleto é maior que da fatura e gera pagamento")
+	@Test
+	public void testBoletoMaiorFatura() {
+		
+		Fatura fatura = new Fatura("Cliente", 50.0, new Date());
+		
+		Boleto boleto = new Boleto("XXXXXXXXXX", 80.0, new Date());
+		
+		Pagamento pagamento = processador.processa(boleto, fatura);
+		Assertions.assertNotNull(pagamento);
+		
+		Assertions.assertEquals(boleto.getValor(), pagamento.getValorPago());
 		 
 	}
 	
