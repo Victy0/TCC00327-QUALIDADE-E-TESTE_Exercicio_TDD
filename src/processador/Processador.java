@@ -10,9 +10,13 @@ public class Processador {
 		
 		if(boleto != null && fatura != null) 
 		{
+			if(boleto.getValor() > fatura.getValorTotal()) 
+			{
+				return new Pagamento(boleto.getValor(), "BOLETO");
+			}
 			if(boleto.getValor().equals(fatura.getValorTotal())) 
 			{
-				return new Pagamento(fatura.getValorTotal(), "BOLETO");
+				return new Pagamento(boleto.getValor(), "BOLETO");
 			}
 		}
 		
