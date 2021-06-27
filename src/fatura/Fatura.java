@@ -39,6 +39,7 @@ public class Fatura {
 	
 	public void addPagamento(Pagamento pagamento) {
 		this.pagamentos.add(pagamento);
+		
 	}
 	
 	public List<Pagamento> getPagamentos(){

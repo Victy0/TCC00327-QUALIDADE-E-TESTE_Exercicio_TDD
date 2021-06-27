@@ -10,6 +10,8 @@ public class Processador {
 	
 	public void processa(List<Boleto> boletos, Fatura fatura) {
 		
+		Double sumValorBoletos = boletos.stream().mapToDouble(Boleto::getValor).sum();
+		
 		for(Boleto boleto : boletos)
 		{
 		
@@ -17,12 +19,12 @@ public class Processador {
 			{
 				Pagamento pagamento = new Pagamento(boleto.getValor(), "BOLETO");
 				fatura.addPagamento(pagamento);
-				
-				if(boleto.getValor() >= fatura.getValorTotal()) 
-				{
-					fatura.setPaga(true);
-				}
 			}
+		}
+		
+		if(sumValorBoletos >= fatura.getValorTotal()) 
+		{
+			fatura.setPaga(true);
 		}
 		
 	}
