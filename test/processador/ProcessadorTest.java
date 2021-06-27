@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import boleto.Boleto;
 import fatura.Fatura;
+import pagamento.Pagamento;
 
 public class ProcessadorTest {
 	
