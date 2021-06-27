@@ -1,6 +1,10 @@
 package fatura;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
+import pagamento.Pagamento;
 
 public class Fatura {
 	
@@ -9,6 +13,8 @@ public class Fatura {
 	private Double valorTotal;
 	
 	private String nomeCliente;
+	
+	private List<Pagamento> pagamentos = new ArrayList<Pagamento>();
 	
 	public Fatura(String nome, Double valor, Date data) {
 		this.nomeCliente = nome;
@@ -26,6 +32,14 @@ public class Fatura {
 
 	public String getNomeCliente() {
 		return nomeCliente;
+	}
+	
+	public void addPagamento(Pagamento pagamento) {
+		this.pagamentos.add(pagamento);
+	}
+	
+	public List<Pagamento> getPagamentos(){
+		return this.pagamentos;
 	}
 
 }

@@ -12,7 +12,9 @@ public class Processador {
 		{
 			if(boleto.getValor() >= fatura.getValorTotal()) 
 			{
-				return new Pagamento(boleto.getValor(), "BOLETO");
+				Pagamento pagamento = new Pagamento(boleto.getValor(), "BOLETO");
+				fatura.addPagamento(pagamento);
+				return pagamento;
 			}
 		}
 		
