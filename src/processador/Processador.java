@@ -6,7 +6,7 @@ import pagamento.Pagamento;
 
 public class Processador {
 	
-	public Pagamento processa(Boleto boleto, Fatura fatura) {
+	public void processa(Boleto boleto, Fatura fatura) {
 		
 		if(boleto != null && fatura != null) 
 		{
@@ -14,11 +14,9 @@ public class Processador {
 			{
 				Pagamento pagamento = new Pagamento(boleto.getValor(), "BOLETO");
 				fatura.addPagamento(pagamento);
-				return pagamento;
 			}
 		}
 		
-		return null;
 	}
 
 }

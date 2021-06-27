@@ -29,12 +29,13 @@ public class ProcessadorTest {
 		
 		Boleto boleto = new Boleto("XXXXXXXXXX", 50.0, new Date());
 		
-		Pagamento pagamento = processador.processa(boleto, fatura);
-		Assertions.assertNotNull(pagamento);
+		processador.processa(boleto, fatura);
+		
+		Assertions.assertEquals(1, fatura.getPagamentos().size());
 		
 		Assertions.assertEquals(50.0, boleto.getValor());
 		Assertions.assertEquals(50.0, fatura.getValorTotal());
-		Assertions.assertEquals(50.0, pagamento.getValorPago());
+		Assertions.assertEquals(50.0, fatura.getPagamentos().get(0).getValorPago());
 		 
 	}
 	
@@ -46,10 +47,11 @@ public class ProcessadorTest {
 		
 		Boleto boleto = new Boleto("XXXXXXXXXX", 50.0, new Date());
 		
-		Pagamento pagamento = processador.processa(boleto, fatura);
-		Assertions.assertNotNull(pagamento);
+		processador.processa(boleto, fatura);
 		
-		Assertions.assertEquals("BOLETO", pagamento.getTipoPagamento());
+		Assertions.assertEquals(1, fatura.getPagamentos().size());
+		
+		Assertions.assertEquals("BOLETO", fatura.getPagamentos().get(0).getTipoPagamento());
 		
 	}
 	
@@ -61,10 +63,9 @@ public class ProcessadorTest {
 		
 		Boleto boleto = new Boleto("XXXXXXXXXX", 80.0, new Date());
 		
-		Pagamento pagamento = processador.processa(boleto, fatura);
-		Assertions.assertNotNull(pagamento);
+		processador.processa(boleto, fatura);
 		
-		Assertions.assertEquals(boleto.getValor(), pagamento.getValorPago());
+		Assertions.assertEquals(1, fatura.getPagamentos().size());
 		 
 	}
 	
@@ -74,10 +75,9 @@ public class ProcessadorTest {
 		
 		Fatura fatura = new Fatura("Cliente", 50.0, new Date());
 		
-		Boleto boleto = new Boleto("XXXXXXXXXX", 80.0, new Date());
+		Boleto boleto = new Boleto("XXXXXXXXXX", 50.0, new Date());
 		
-		Pagamento pagamento = processador.processa(boleto, fatura);
-		Assertions.assertNotNull(pagamento);
+		processador.processa(boleto, fatura);
 		
 		Assertions.assertEquals(1, fatura.getPagamentos().size());
 		 
