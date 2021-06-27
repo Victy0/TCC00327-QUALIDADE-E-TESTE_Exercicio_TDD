@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import boleto.Boleto;
 import pagamento.Pagamento;
 
 public class Fatura {
@@ -40,6 +41,12 @@ public class Fatura {
 	public void addPagamento(Pagamento pagamento) {
 		this.pagamentos.add(pagamento);
 		
+		Double sumValorBoletos = this.pagamentos.stream().mapToDouble(Pagamento::getValorPago).sum();
+		
+		if(sumValorBoletos >= this.valorTotal) 
+		{
+			this.setPaga(true);
+		}
 	}
 	
 	public List<Pagamento> getPagamentos(){
