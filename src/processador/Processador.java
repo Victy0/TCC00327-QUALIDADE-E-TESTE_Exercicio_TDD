@@ -10,10 +10,11 @@ public class Processador {
 		
 		if(boleto != null && fatura != null) 
 		{
+			Pagamento pagamento = new Pagamento(boleto.getValor(), "BOLETO");
+			fatura.addPagamento(pagamento);
+			
 			if(boleto.getValor() >= fatura.getValorTotal()) 
 			{
-				Pagamento pagamento = new Pagamento(boleto.getValor(), "BOLETO");
-				fatura.addPagamento(pagamento);
 				fatura.setPaga(true);
 			}
 		}
