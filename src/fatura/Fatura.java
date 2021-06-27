@@ -9,29 +9,23 @@ public class Fatura {
 	private Double valorTotal;
 	
 	private String nomeCliente;
+	
+	public Fatura(String nome, Double valor, Date data) {
+		this.nomeCliente = nome;
+		this.valorTotal = valor;
+		this.data = data;
+	}
 
 	public Date getData() {
 		return data;
-	}
-
-	public void setData(Date data) {
-		this.data = data;
 	}
 
 	public Double getValorTotal() {
 		return valorTotal;
 	}
 
-	public void setValorTotal(Double valorTotal) {
-		this.valorTotal = valorTotal;
-	}
-
 	public String getNomeCliente() {
 		return nomeCliente;
-	}
-
-	public void setNomeCliente(String nomeCliente) {
-		this.nomeCliente = nomeCliente;
 	}
 
 }

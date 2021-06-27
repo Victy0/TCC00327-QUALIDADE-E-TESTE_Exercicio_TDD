@@ -12,30 +12,15 @@ public class FaturaTest {
 	
 	private Fatura fatura;
 	
-	@BeforeEach
-	public void inicializa() {
-		fatura = new Fatura();
-	}
-	
 	@DisplayName("Testa a get/set da DATA")
 	@Test
 	public void testGetSetData() {
 		Date data = new Date();
-		fatura.setData(data);		
-		Assertions.assertEquals(data, fatura.getData());		
+		fatura = new Fatura("Cliente", 50.0, data);	
+		
+		Assertions.assertEquals("Cliente", fatura.getNomeCliente());
+		Assertions.assertEquals(50.0, fatura.getValorTotal());
+		Assertions.assertEquals(data, fatura.getData());
 	}
 	
-	@DisplayName("Testa a get/set da VALOR TOTAL")
-	@Test
-	public void testGetSetValorTotal() {
-		fatura.setValorTotal(50.0);
-		Assertions.assertEquals(50.0, fatura.getValorTotal());		
-	}
-	
-	@DisplayName("Testa a get/set da NOME CLIENTE")
-	@Test
-	public void testGetSetNomeCliente() {
-		fatura.setNomeCliente("Fulano");	
-		Assertions.assertEquals("Fulano", fatura.getNomeCliente());		
-	}
 }
